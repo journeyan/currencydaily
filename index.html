@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全球数字货币每日简报 - 主页</title>
+    
+    <!-- TailwindCSS 3 via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome 6 via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Google Fonts for a clean, modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom styles copied from the report page for consistency */
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .bento-box {
+            background-color: #f8f8f8;
+            border-radius: 1.5rem; /* 24px */
+            padding: 1.5rem; /* 24px */
+            border: 1px solid #e5e5e5;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        
+        .bento-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+        }
+
+        .highlight { color: #4D6BFE; }
+        .bg-highlight { background-color: #4D6BFE; }
+        .tech-gradient { background: linear-gradient(135deg, rgba(77, 107, 254, 0.1) 0%, rgba(77, 107, 254, 0) 50%); }
+    </style>
+</head>
+<body class="p-4 md:p-6 lg:p-8">
+    <div class="max-w-screen-2xl mx-auto">
+        <!-- Header -->
+        <header class="mb-8 md:mb-12 text-center">
+            <h1 class="text-4xl md:text-6xl font-black">简报中心</h1>
+            <p class="text-xl md:text-2xl text-gray-500 font-semibold mt-2">Archive of Global Crypto Daily Briefings</p>
+            <p class="mt-4 text-gray-600 max-w-2xl mx-auto">每日市场动态与深度分析。点击下方卡片查看指定日期的完整简报。</p>
+        </header>
+
+        <!-- Reports Grid -->
+        <main>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+
+                <!-- Report Card for Sept 6, 2025 -->
+                <div class="bento-box tech-gradient">
+                    <header>
+                        <p class="text-gray-400 text-sm font-semibold uppercase">SEPTEMBER 06, 2025</p>
+                        <h2 class="text-3xl font-bold mt-1">2025年9月6日</h2>
+                    </header>
+                    <div class="my-6 space-y-3 text-sm flex-grow">
+                        <div class="flex items-center gap-2">
+                            <i class="fab fa-bitcoin text-gray-500 w-4 text-center"></i>
+                            <span>BTC: <span class="font-semibold text-black">$110,662</span> <span class="text-red-600 text-xs">(-0.06%)</span></span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-landmark text-gray-500 w-4 text-center pt-1"></i>
+                            <span class="flex-1">要闻: SEC/CFTC 联合声明，市场结构迎来突破。</span>
+                        </div>
+                    </div>
+                    <a href="2025-09-06_report.html" class="mt-auto block text-center bg-highlight text-white font-bold py-3 px-4 rounded-xl transition hover:opacity-90 active:scale-95">
+                        查看完整简报 <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Placeholder Card for the next day -->
+                <div class="bento-box opacity-60 cursor-not-allowed">
+                     <header>
+                        <p class="text-gray-400 text-sm font-semibold uppercase">SEPTEMBER 07, 2025</p>
+                        <h2 class="text-3xl font-bold mt-1">2025年9月7日</h2>
+                    </header>
+                    <div class="my-6 space-y-3 text-sm flex-grow">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-hourglass-half text-gray-400 w-4 text-center"></i>
+                            <span class="text-gray-500">数据待更新...</span>
+                        </div>
+                         <div class="flex items-start gap-2">
+                            <i class="fas fa-file-alt text-gray-400 w-4 text-center pt-1"></i>
+                            <span class="flex-1 text-gray-500">报告生成中...</span>
+                        </div>
+                    </div>
+                    <div class="mt-auto text-center bg-gray-300 text-gray-500 font-bold py-3 px-4 rounded-xl">
+                        即将发布
+                    </div>
+                </div>
+
+                <!-- More Placeholder Cards to show the design -->
+                <div class="bento-box opacity-40 cursor-not-allowed hidden sm:flex">
+                     <header>
+                        <p class="text-gray-400 text-sm font-semibold uppercase">SEPTEMBER 08, 2025</p>
+                        <h2 class="text-3xl font-bold mt-1">2025年9月8日</h2>
+                    </header>
+                    <div class="my-6 flex-grow flex items-center justify-center">
+                        <i class="fas fa-ellipsis text-3xl text-gray-400"></i>
+                    </div>
+                    <div class="mt-auto text-center bg-gray-300 text-gray-500 font-bold py-3 px-4 rounded-xl">
+                        即将发布
+                    </div>
+                </div>
+                
+                <div class="bento-box opacity-40 cursor-not-allowed hidden lg:flex">
+                     <header>
+                        <p class="text-gray-400 text-sm font-semibold uppercase">SEPTEMBER 09, 2025</p>
+                        <h2 class="text-3xl font-bold mt-1">2025年9月9日</h2>
+                    </header>
+                    <div class="my-6 flex-grow flex items-center justify-center">
+                        <i class="fas fa-ellipsis text-3xl text-gray-400"></i>
+                    </div>
+                    <div class="mt-auto text-center bg-gray-300 text-gray-500 font-bold py-3 px-4 rounded-xl">
+                        即将发布
+                    </div>
+                </div>
+
+            </div>
+        </main>
+        
+        <footer class="text-center mt-12 text-gray-400 text-sm">
+            <p>&copy; 2025 Daily Crypto Briefings. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Falcon Finance $FF 社区销售 | Buidlpad</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .highlight-gradient {
+            background: linear-gradient(135deg, rgba(77, 107, 254, 0.2) 0%, rgba(77, 107, 254, 0.05) 100%);
+        }
+        .highlight-text {
+            color: #4D6BFE;
+        }
+        .bento-box {
+            background-color: #F9FAFB; /* Slightly off-white for contrast */
+            border: 1px solid #F3F4F6;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease-in-out;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s forwards;
+        }
+        .bento-box-dark {
+            background-color: #111827;
+            color: white;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .btn-primary {
+            background-color: #111827;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .btn-primary:hover {
+            background-color: #374151;
+        }
+        /* Custom styles for ApexCharts */
+        .apexcharts-tooltip {
+            background: #1f2937 !important;
+            color: #ffffff !important;
+            border: 0 !important;
+        }
+        .apexcharts-tooltip .apexcharts-tooltip-series-group {
+            background: #1f2937 !important;
+        }
+    </style>
+</head>
+<body class="bg-white text-black">
+
+    <div class="max-w-screen-2xl mx-auto p-4 lg:p-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-4 lg:gap-6">
+
+            <!-- 1. Hero -->
+            <div class="bento-box xl:col-span-4 md:col-span-2 flex flex-col justify-between" style="animation-delay: 0.1s;">
+                <div>
+                    <div class="text-sm font-medium text-gray-500">A NEW STANDARD FOR ONCHAIN LIQUIDITY</div>
+                    <h1 class="text-5xl lg:text-8xl font-extrabold tracking-tighter mt-2">
+                        Falcon $FF<br>社区销售
+                    </h1>
+                </div>
+                <div class="flex justify-between items-end mt-8">
+                    <div class="text-lg">
+                        登陆 <span class="font-semibold">Buidlpad</span> 平台
+                    </div>
+                    <a href="#" class="btn-primary">
+                        立即参与 <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 2. Core Metrics -->
+            <div class="bento-box xl:col-span-2 md:col-span-2 flex flex-col justify-around text-center" style="animation-delay: 0.2s;">
+                <div class="py-2">
+                    <div class="text-5xl lg:text-7xl font-bold highlight-text">$1.5B+</div>
+                    <div class="text-gray-500 mt-1">USDf CIRCULATING SUPPLY</div>
+                </div>
+                <div class="border-t border-gray-200 w-full"></div>
+                <div class="py-2">
+                    <div class="text-5xl lg:text-7xl font-bold highlight-text">58K+</div>
+                    <div class="text-gray-500 mt-1">MONTHLY ACTIVE USERS</div>
+                </div>
+            </div>
+
+            <!-- 3. What is Falcon? -->
+            <div class="bento-box xl:col-span-3 lg:col-span-2 md:col-span-2 flex flex-col" style="animation-delay: 0.3s;">
+                <h2 class="text-3xl font-bold tracking-tight">通用抵押<br>基础设施</h2>
+                <p class="text-gray-600 mt-4 leading-relaxed">
+                    Falcon Finance 旨在将 BTC, ETH, SOL, 稳定币及 RWA 等任意资产，转化为与美元挂钩的流动性 USDf，无缝连接 TradFi 与 DeFi。
+                </p>
+                <div class="mt-auto pt-4 flex space-x-4 text-gray-500">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-coins text-xl highlight-text"></i>
+                        <span>铸造 USDf</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-chart-line text-xl highlight-text"></i>
+                        <span>质押 sUSDf 生息</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 4. APY Chart -->
+            <div class="bento-box xl:col-span-3 lg:col-span-2 md:col-span-2" style="animation-delay: 0.4s;">
+                <h3 class="font-bold text-xl">卓越的收益表现</h3>
+                <p class="text-sm text-gray-500">sUSDf 30-DAY APY COMPARISON</p>
+                <div id="apy-chart" class="mt-2 -mb-4 -mx-4"></div>
+            </div>
+            
+            <!-- 5. Sale Details -->
+            <div class="bento-box xl:col-span-2 md:col-span-1 highlight-gradient" style="animation-delay: 0.5s;">
+                <h3 class="font-bold text-xl">销售详情</h3>
+                <p class="text-sm text-gray-500">SALE DETAILS</p>
+                <ul class="space-y-4 mt-4 text-lg">
+                    <li class="flex justify-between items-center"><span>规模 <span class="text-gray-400">SIZE</span></span> <span class="font-semibold">$4,000,000</span></li>
+                    <li class="flex justify-between items-center"><span>解锁 <span class="text-gray-400">UNLOCK</span></span> <span class="font-semibold">100% at TGE</span></li>
+                    <li class="flex justify-between items-center"><span>代币 <span class="text-gray-400">TOKEN</span></span> <span class="font-semibold">USD1</span></li>
+                </ul>
+            </div>
+
+            <!-- 6. Valuation Tiers -->
+            <div class="bento-box xl:col-span-4 md:col-span-1 flex flex-col lg:flex-row lg:space-x-6" style="animation-delay: 0.6s;">
+                <div class="flex-1 p-4 border border-gray-200 rounded-2xl">
+                    <div class="text-xs font-bold highlight-text bg-blue-100 text-blue-800 px-2 py-1 rounded-full inline-block">TIER 1</div>
+                    <div class="text-4xl font-bold mt-2">$350M <span class="text-xl text-gray-400">FDV</span></div>
+                    <p class="text-sm text-gray-500 mt-2">质押 ≥ $3000 的 USDf/sUSDf 用户</p>
+                </div>
+                <div class="flex-1 p-4 border border-gray-200 rounded-2xl mt-4 lg:mt-0">
+                    <div class="text-xs font-bold bg-gray-200 text-gray-800 px-2 py-1 rounded-full inline-block">TIER 2</div>
+                    <div class="text-4xl font-bold mt-2">$450M <span class="text-xl text-gray-400">FDV</span></div>
+                    <p class="text-sm text-gray-500 mt-2">其他所有合格参与者</p>
+                </div>
+            </div>
+            
+            <!-- 7. Timeline -->
+            <div class="bento-box xl:col-span-3 lg:col-span-2 md:col-span-2" style="animation-delay: 0.7s;">
+                <h3 class="font-bold text-xl">参与流程</h3>
+                <p class="text-sm text-gray-500">STEP BY STEP</p>
+                <ol class="mt-4 space-y-3">
+                    <li class="flex items-start">
+                        <div class="bg-gray-200 text-black h-6 w-6 rounded-full flex items-center justify-center font-bold text-sm mr-3 flex-shrink-0">1</div>
+                        <div>
+                            <span class="font-semibold">KYC & 订阅</span><br>
+                            <span class="text-xs text-gray-500">9月16日 12:00 - 9月19日 11:59 UTC</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <div class="bg-gray-200 text-black h-6 w-6 rounded-full flex items-center justify-center font-bold text-sm mr-3 flex-shrink-0">2</div>
+                        <div>
+                            <span class="font-semibold">贡献期</span><br>
+                            <span class="text-xs text-gray-500">9月22日 10:00 - 9月23日 10:00 UTC</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <div class="bg-gray-200 text-black h-6 w-6 rounded-full flex items-center justify-center font-bold text-sm mr-3 flex-shrink-0">3</div>
+                        <div>
+                            <span class="font-semibold">结算与退款</span><br>
+                            <span class="text-xs text-gray-500">9月26日 16:00 UTC 前完成</span>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+            
+            <!-- 8. Special Privileges -->
+            <div class="bento-box xl:col-span-3 lg:col-span-2 md:col-span-2 flex flex-col justify-center items-center text-center" style="animation-delay: 0.8s;">
+                <i class="fas fa-star text-4xl highlight-text"></i>
+                <h3 class="font-bold text-2xl mt-3">忠实用户特权</h3>
+                <p class="text-gray-500 mt-2">
+                    长期质押者与 Falcon Miles 高持有者<br>贡献上限可提升至
+                </p>
+                <div class="text-6xl font-bold mt-2 highlight-text">$5,175</div>
+            </div>
+
+        </div>
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const boxes = document.querySelectorAll('.bento-box');
+    boxes.forEach((box, index) => {
+        box.style.animationDelay = `${index * 0.05}s`;
+    });
+
+    var options = {
+      series: [{
+          name: 'sUSDf APY',
+          data: [6.8, 7.2, 8.5, 9.1, 8.8, 9.5, 10.0]
+        }, {
+          name: 'Top 5 Average',
+          data: [5.5, 5.8, 6.0, 6.1, 6.3, 6.2, 6.29]
+      }],
+      chart: {
+        height: 180,
+        type: 'area',
+        toolbar: {
+          show: false
+        },
+        sparkline: {
+            enabled: false,
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: 'smooth',
+        width: 2
+      },
+      colors: ['#4D6BFE', '#9CA3AF'],
+      fill: {
+        type: 'gradient',
+        gradient: {
+            shadeIntensity: 1,
+            opacityFrom: 0.5,
+            opacityTo: 0.1,
+            stops: [0, 100]
+        }
+      },
+      xaxis: {
+        categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
+        labels: {
+            show: true,
+            style: {
+                colors: '#6B7280',
+                fontSize: '12px',
+            },
+        },
+        axisBorder: { show: false },
+        axisTicks: { show: false },
+      },
+      yaxis: {
+        show: false
+      },
+      grid: {
+        show: false
+      },
+      tooltip: {
+        x: {
+          format: 'MMM'
+        },
+        y: {
+            formatter: function (val) {
+                return val.toFixed(2) + "%"
+            }
+        },
+        theme: 'dark'
+      },
+      legend: {
+          show: true,
+          position: 'top',
+          horizontalAlign: 'right',
+          markers: {
+              width: 8,
+              height: 8,
+              radius: 12,
+          },
+          itemMargin: {
+              horizontal: 10,
+          },
+          labels: {
+            colors: '#6B7280'
+          }
+      },
+    };
+
+    var chart = new ApexCharts(document.querySelector("#apy-chart"), options);
+    chart.render();
+});
+</script>
+
+</body>
+</html>
